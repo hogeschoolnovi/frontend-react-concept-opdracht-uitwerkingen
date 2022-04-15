@@ -4,12 +4,12 @@ import './Loader.css';
 function Loader() {
   return (
     <div className="loader">
-      <span className="outer-wrapper">
-        <span className="circle outer-circle"></span>
-      </span>
-      <span className="inner-wrapper">
-        <span className="circle inner-circle"></span>
-      </span>
+      <div className="outer-wrapper">
+        <div className="circle circle-one"></div>
+      </div>
+      <div className="inner-wrapper">
+        <div className="circle circle-two"></div>
+      </div>
     </div>
   );
 }

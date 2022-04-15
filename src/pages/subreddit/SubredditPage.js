@@ -6,13 +6,17 @@ import Header from '../../components/header/Header';
 import BackLink from '../../components/backLink/BackLink';
 import TitleAndDescription from '../../components/titleAndDescription/TitleAndDescription';
 import formatDotNotation from '../../helpers/formatDotNotation';
+import Loader from '../../components/loader/Loader';
 
 function SubredditPage() {
   const [details, setDetails] = useState({});
+  const [loading, toggleLoading] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
     async function fetchData() {
+      toggleLoading(true);
+
       try {
         const response = await axios.get(`https://www.reddit.com/r/${id}/about.json`);
         console.log(response);
@@ -20,6 +24,8 @@ function SubredditPage() {
       } catch (e) {
         console.error(e);
       }
+
+      toggleLoading(false);
     }
 
     fetchData();
@@ -38,12 +44,13 @@ function SubredditPage() {
               <div className="subreddit-specification-details">
 
                 <TitleAndDescription title="Title" description={details.title} />
-                <TitleAndDescription title="Description" description={details.description} />
+                <TitleAndDescription title="Description" description={details.public_description} />
                 <TitleAndDescription title="Number of subscribers" description={formatDotNotation(details.subscribers)} />
 
                 <BackLink url="/" label="Take me back" />
               </div>
             )}
+            {loading && <div className="placeholder"><Loader/></div>}
           </div>
         </section>
       </main>

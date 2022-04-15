@@ -4,12 +4,16 @@ import Header from '../../components/header/Header';
 import SubredditArticle from '../../components/subredditArticle/SubredditArticle';
 import logo from '../../assets/logo.png';
 import './HomePage.css';
+import Loader from '../../components/loader/Loader';
 
 function HomePage() {
   const [reddits, setReddits] = useState([]);
+  const [loading, toggleLoading] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
+      toggleLoading(true);
+
       try {
         const response = await axios.get('https://www.reddit.com/hot.json?limit=15');
         console.log(response);
@@ -17,6 +21,8 @@ function HomePage() {
       } catch (e) {
         console.error(e);
       }
+
+      toggleLoading(false);
     }
 
     fetchData();
@@ -47,6 +53,7 @@ function HomePage() {
                   />
                 )
               })}
+              {loading && <div className="placeholder"><Loader/></div>}
             </div>
           </div>
         </section>
