@@ -7,10 +7,12 @@ import BackLink from '../../components/backLink/BackLink';
 import TitleAndDescription from '../../components/titleAndDescription/TitleAndDescription';
 import formatDotNotation from '../../helpers/formatDotNotation';
 import Loader from '../../components/loader/Loader';
+import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 
 function SubredditPage() {
   const [details, setDetails] = useState({});
   const [loading, toggleLoading] = useState(false);
+  const [error, toggleError] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -23,6 +25,7 @@ function SubredditPage() {
         setDetails(response.data.data);
       } catch (e) {
         console.error(e);
+        toggleError(true);
       }
 
       toggleLoading(false);
@@ -50,7 +53,8 @@ function SubredditPage() {
                 <BackLink url="/" label="Take me back" />
               </div>
             )}
-            {loading && <div className="placeholder"><Loader/></div>}
+            {loading && <Loader/>}
+            {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
           </div>
         </section>
       </main>

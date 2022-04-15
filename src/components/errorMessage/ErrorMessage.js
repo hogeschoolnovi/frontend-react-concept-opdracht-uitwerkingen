@@ -1,11 +1,9 @@
 import React from 'react';
 import './ErrorMessage.css';
 
-function ErrorMessage(props) {
+function ErrorMessage({ children }) {
   return (
-    <div>
-
-    </div>
+    <p className="error-message">{children}</p>
   );
 }
 

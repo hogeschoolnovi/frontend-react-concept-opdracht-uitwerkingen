@@ -5,10 +5,12 @@ import SubredditArticle from '../../components/subredditArticle/SubredditArticle
 import logo from '../../assets/logo.png';
 import './HomePage.css';
 import Loader from '../../components/loader/Loader';
+import ErrorMessage from '../../components/errorMessage/ErrorMessage';
 
 function HomePage() {
   const [reddits, setReddits] = useState([]);
   const [loading, toggleLoading] = useState(false);
+  const [error, toggleError] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -20,6 +22,7 @@ function HomePage() {
         setReddits(response.data.data.children);
       } catch (e) {
         console.error(e);
+        toggleError(true);
       }
 
       toggleLoading(false);
@@ -53,7 +56,8 @@ function HomePage() {
                   />
                 )
               })}
-              {loading && <div className="placeholder"><Loader/></div>}
+              {loading && <Loader/>}
+              {error && <ErrorMessage>Het ophalen van de data is mislukt. Probeer de pagina opnieuw te laden.</ErrorMessage>}
             </div>
           </div>
         </section>
