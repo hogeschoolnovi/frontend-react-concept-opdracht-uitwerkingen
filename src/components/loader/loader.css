@@ -1,0 +1,54 @@
+:root {
+    --border-width: 5px;
+    --cirle-diameter: 64px;
+}
+
+.loader {
+    animation: spin-loader2 .7s infinite linear;
+}
+
+.outer-wrapper,
+.inner-wrapper {
+    width: var(--cirle-diameter);
+    height: calc(var(--cirle-diameter)/2);
+    overflow: hidden;
+}
+
+.inner-wrapper {
+    transform: rotate(180deg);
+}
+
+.circle {
+    border-radius: 50%;
+    border: var(--border-width) solid white;
+    border-right: var(--border-width) solid transparent;
+    border-bottom: var(--border-width) solid transparent;
+    width: 100%;
+    height: 200%;
+}
+
+.outer-circle {
+    animation: outer-circle .7s infinite alternate cubic-bezier(.48,.2,.41,.96);
+}
+
+.inner-circle {
+    animation: inner-circle .7s infinite alternate cubic-bezier(.48,.2,.41,.96);
+}
+
+@keyframes outer-circle {
+    0% {
+        transform: rotate(60deg);
+    }
+    100% {
+        transform: rotate(205deg);
+    }
+}
+
+@keyframes inner-circle {
+    0% {
+        transform: rotate(30deg);
+    }
+    100% {
+        transform: rotate(-115deg);
+    }
+}

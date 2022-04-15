@@ -63,10 +63,3 @@ Hij mag krimpen als het scherm minder breed wordt, maar niet groeien als er meer
     flex-direction: column;
     justify-content: center;
 }
-
-footer {
-    color: var(--white);
-    background-color: var(--black);
-    padding: 20px 0;
-    text-align: center;
-}

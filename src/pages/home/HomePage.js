@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './HomePage.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
+import SubredditArticle from '../../components/subredditArticle/SubredditArticle';
 import logo from '../../assets/logo.png';
+import './HomePage.css';
 
 function HomePage() {
   const [reddits, setReddits] = useState([]);
@@ -36,18 +36,15 @@ function HomePage() {
             <div className="subreddit-article-container">
               {reddits.map((reddit) => {
                 return (
-                  <article className="subreddit-article" key={reddit.data.id}>
-
-                    {/*We gebruiken hier een <a> ipv <Link> omdat we naar een webpagina buiten onze applicatie linken */}
-                    <a href={reddit.data.url} className="subreddit-article-title-link">
-                      <h3>{reddit.data.title}</h3>
-                    </a>
-
-                    <span>
-                      <p><Link to={`/subreddit/${reddit.data.subreddit}`}>{reddit.data.subreddit_name_prefixed}</Link></p>
-                      <p>Comments {reddit.data.num_comments} — Ups {reddit.data.ups}</p>
-                    </span>
-                  </article>
+                  <SubredditArticle
+                    key={reddit.data.id}
+                    url={reddit.data.url}
+                    title={reddit.data.title}
+                    subredditName={reddit.data.subreddit}
+                    subredditNamePrefixed={reddit.data.subreddit_name_prefixed}
+                    comments={reddit.data.num_comments}
+                    ups={reddit.data.ups}
+                  />
                 )
               })}
             </div>

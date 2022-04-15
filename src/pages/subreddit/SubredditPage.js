@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './SubredditPage.css';
 import Header from '../../components/header/Header';
-import { ReactComponent as BackIcon } from '../../assets/back.svg';
+import BackLink from '../../components/backLink/BackLink';
+import TitleAndDescription from '../../components/titleAndDescription/TitleAndDescription';
+import formatDotNotation from '../../helpers/formatDotNotation';
 
 function SubredditPage() {
   const [details, setDetails] = useState({});
@@ -34,17 +36,12 @@ function SubredditPage() {
           <div className="inner-content-container">
             {Object.keys(details).length > 0 && (
               <div className="subreddit-specification-details">
-                <h3>Title</h3>
-                <p>{details.title}</p>
-                <h3>Description</h3>
-                <p>{details.public_description}</p>
-                <h3>Number of subscribers</h3>
-                <p>{details.subscribers}</p>
 
-                <span className="back-link-wrapper">
-                  <BackIcon className="back-icon"/>
-                  <Link to="/">Take me back</Link>
-                </span>
+                <TitleAndDescription title="Title" description={details.title} />
+                <TitleAndDescription title="Description" description={details.description} />
+                <TitleAndDescription title="Number of subscribers" description={formatDotNotation(details.subscribers)} />
+
+                <BackLink url="/" label="Take me back" />
               </div>
             )}
           </div>

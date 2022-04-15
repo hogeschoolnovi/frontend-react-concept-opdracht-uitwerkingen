@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import SubredditPage from './pages/subreddit/SubredditPage';
 import HomePage from './pages/home/HomePage';
 import './App.css';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -16,11 +17,7 @@ function App() {
         </Route>
       </Switch>
 
-      <footer className="outer-content-container">
-        <div className="inner-content-container">
-          In opdracht van NOVI Hogeschool © 2022
-        </div>
-      </footer>
+      <Footer company="NOVI Hogeschool" year="2022"/>
     </>
   );
 }

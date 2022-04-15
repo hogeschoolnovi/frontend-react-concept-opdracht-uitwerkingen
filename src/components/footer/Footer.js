@@ -1,11 +1,13 @@
 import React from 'react';
 import './Footer.css';
 
-function Footer(props) {
+function Footer({ company, year }) {
   return (
-    <div>
-
-    </div>
+    <footer className="outer-content-container">
+      <div className="inner-content-container">
+        In opdracht van {company} © {year}
+      </div>
+    </footer>
   );
 }
 
