@@ -30,9 +30,10 @@ function SubredditPage() {
 
       toggleLoading(false);
     }
-
-    fetchData();
-  }, []);
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   return (
     <>
