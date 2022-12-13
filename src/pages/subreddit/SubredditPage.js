@@ -19,9 +19,10 @@ function SubredditPage() {
         console.error(e);
       }
     }
-
-    fetchData();
-  }, []);
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
 
   return (
     <>
